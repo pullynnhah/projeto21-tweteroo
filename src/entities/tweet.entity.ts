@@ -8,4 +8,8 @@ export class Tweet {
     this.tweet = tweet;
     this.user = user;
   }
+
+  isTweetFromUsername(username: string) {
+    return this.user.getUsername() === username;
+  }
 }

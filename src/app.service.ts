@@ -27,7 +27,11 @@ export class AppService {
   }
 
   getTweetsByUsername(username: string) {
-    return this.tweets;
+    const tweets = [];
+    for (const tweet of this.tweets) {
+      if (tweet.isTweetFromUsername(username)) tweets.push(tweet);
+    }
+    return tweets;
   }
 
   createUser(body: CreateUserDTO) {
@@ -35,6 +39,12 @@ export class AppService {
   }
 
   createTweet(body: CreateTweetDTO) {
-    this.tweets.push(new Tweet(new User("username", "avatar"), "tweet"));
+    let tweet = null;
+    for (const user of this.users) {
+      if (user.getUsername() === body.username) {
+        tweet = new Tweet(user, body.tweet);
+      }
+    }
+    if (tweet === null) throw Error("UNAUTHORIZED");
   }
 }

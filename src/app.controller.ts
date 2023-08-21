@@ -39,7 +39,11 @@ export class AppController {
 
   @Post("/tweet")
   createTweet(@Body() body: CreateTweetDTO) {
-    return this.appService.createTweet(body);
+    try {
+      return this.appService.createTweet(body);
+    } catch (e) {
+      throw new HttpException(e.message, HttpStatus.UNAUTHORIZED);
+    }
   }
 
   @Get("/users")

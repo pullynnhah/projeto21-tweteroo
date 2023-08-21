@@ -10,4 +10,10 @@ export class User {
   getUsername() {
     return this.username;
   }
+
+  getUserByUsername(username: string) {
+    if (username === this.username) {
+      return this;
+    }
+  }
 }
