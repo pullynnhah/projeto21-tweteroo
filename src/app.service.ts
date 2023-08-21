@@ -4,15 +4,19 @@ import { Tweet } from "./entities/tweet.entity";
 
 @Injectable()
 export class AppService {
-  private usersDB: User[];
-  private tweetsDB: Tweet[];
+  private users: User[];
+  private tweets: Tweet[];
 
   constructor() {
-    this.usersDB = [];
-    this.tweetsDB = [];
+    this.users = [new User("username", "avatar")];
+    this.tweets = [new Tweet(new User("username", "avatar"), "tweet")];
   }
 
-  getHello(): string {
-    return "Hello World!";
+  getUsers(): User[] {
+    return this.users;
+  }
+
+  getTweets(): Tweet[] {
+    return this.tweets;
   }
 }
