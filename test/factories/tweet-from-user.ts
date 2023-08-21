@@ -1,5 +1,5 @@
-import * as request from 'supertest';
-import { INestApplication } from '@nestjs/common';
+import * as request from "supertest";
+import { INestApplication } from "@nestjs/common";
 
 type TweetBody = {
   username: string;
@@ -7,5 +7,5 @@ type TweetBody = {
 };
 
 export async function tweetFromUser(app: INestApplication, body: TweetBody) {
-  return request(app.getHttpServer()).post('/tweets').send(body);
+  return request(app.getHttpServer()).post("/tweets").send(body);
 }
